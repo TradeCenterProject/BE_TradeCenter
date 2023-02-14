@@ -16,7 +16,7 @@ public class StockEntity {
     private int id;
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private CompanyEntity companyId;
+    private CompanyEntity companyEntity;
     private String code;
     private String name;
     private String producer;
