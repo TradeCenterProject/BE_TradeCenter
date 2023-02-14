@@ -13,7 +13,6 @@ public class StockDAOImpl implements StockDAO {
 
     StockRepository stockRepository;
 
-
     @Autowired
     public StockDAOImpl(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
@@ -22,5 +21,10 @@ public class StockDAOImpl implements StockDAO {
     @Override
     public List<StockEntity> getStocksByCompanyId(int companyId) {
         return stockRepository.findAllByCompanyEntity_Id(companyId);
+    }
+
+    @Override
+    public StockEntity addStock(StockEntity stockEntity) {
+        return stockRepository.save(stockEntity);
     }
 }

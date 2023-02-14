@@ -1,9 +1,10 @@
 package group1.unnamed.data.dto;
 
+import group1.unnamed.data.entity.CompanyEntity;
 import group1.unnamed.data.entity.StockEntity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -11,6 +12,12 @@ import java.util.List;
 @ToString
 @Builder
 public class StockDTO {
+    private int id;
+    private String code;
+    private String name;
+    private String producer;
+    private String location;
+    private int price;
+    private int amount;
 
-    private List<StockEntity> stocks;
 }

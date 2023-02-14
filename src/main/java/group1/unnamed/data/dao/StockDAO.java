@@ -7,4 +7,5 @@ import java.util.List;
 public interface StockDAO {
 
     List<StockEntity> getStocksByCompanyId(int companyId);
+    StockEntity addStock(StockEntity stockEntity);
 }
