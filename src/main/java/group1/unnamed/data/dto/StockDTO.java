@@ -12,7 +12,6 @@ import lombok.*;
 @ToString
 @Builder
 public class StockDTO {
-    private int id;
     private String code;
     private String name;
     private String producer;

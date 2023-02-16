@@ -34,8 +34,10 @@ public class StockServiceImpl implements StockService {
     @Override
     public StockListDTO addStock(int companyId, StockDTO stockDTO) {
         CompanyEntity companyEntity = companyHandler.getCompanyEntity(companyId);
-
-        StockEntity stockEntity = new StockEntity(stockDTO.getId(), companyEntity, stockDTO.getCode(), stockDTO.getName(), stockDTO.getProducer(), stockDTO.getLocation(), stockDTO.getPrice(), stockDTO.getAmount());
+        System.out.println(companyEntity.getId());
+        System.out.println(companyEntity.getCode());
+        System.out.println(companyEntity.getName());
+        StockEntity stockEntity = new StockEntity(companyEntity, stockDTO.getCode(), stockDTO.getName(), stockDTO.getProducer(), stockDTO.getLocation(), stockDTO.getPrice(), stockDTO.getAmount());
         stockHandler.addStockEntity(stockEntity);
 
         List<StockEntity> stockEntities = stockHandler.getStockEntitiesByCompanyId(companyId);
