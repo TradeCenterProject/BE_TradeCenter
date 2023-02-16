@@ -3,7 +3,7 @@ package group1.unnamed.handler.impl;
 import group1.unnamed.data.dao.StockDAO;
 import group1.unnamed.data.entity.StockEntity;
 import group1.unnamed.handler.StockHandler;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package group1.unnamed.data.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

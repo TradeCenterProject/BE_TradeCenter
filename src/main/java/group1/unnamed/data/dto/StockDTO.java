@@ -2,8 +2,8 @@ package group1.unnamed.data.dto;
 
 import group1.unnamed.data.entity.CompanyEntity;
 import group1.unnamed.data.entity.StockEntity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.*;
 
 @Data
