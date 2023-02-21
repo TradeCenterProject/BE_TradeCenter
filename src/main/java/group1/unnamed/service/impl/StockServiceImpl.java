@@ -34,7 +34,7 @@ public class StockServiceImpl implements StockService {
         for (int i=0; i<stockEntities.size(); i++) {
             StockEntity stockEntity = stockEntities.get(i);
 
-            StockDTO stockDTO = new StockDTO(stockEntity.getCode(), stockEntity.getName(), stockEntity.getProducer(), stockEntity.getLocation(), stockEntity.getPrice(), stockEntity.getAmount());
+            StockDTO stockDTO = new StockDTO(stockEntity.getId(), stockEntity.getCode(), stockEntity.getName(), stockEntity.getProducer(), stockEntity.getLocation(), stockEntity.getPrice(), stockEntity.getAmount());
 
             stocks.add(stockDTO);
         }
