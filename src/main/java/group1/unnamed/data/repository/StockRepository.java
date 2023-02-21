@@ -9,4 +9,5 @@ public interface StockRepository extends JpaRepository<StockEntity, Integer> {
 
     List<StockEntity> findAllByCompanyId_Id(int companyId);
 
+
 }
