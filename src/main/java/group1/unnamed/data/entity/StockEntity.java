@@ -19,7 +19,7 @@ public class StockEntity {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private CompanyEntity companyEntity;
+    private CompanyEntity companyId;
     private String code;
     private String name;
     private String producer;
@@ -27,8 +27,8 @@ public class StockEntity {
     private int price;
     private int amount;
 
-    public StockEntity(CompanyEntity companyEntity, String code, String name, String producer, String location, int price, int amount) {
-        this.companyEntity = companyEntity;
+    public StockEntity(CompanyEntity companyId, String code, String name, String producer, String location, int price, int amount) {
+        this.companyId = companyId;
         this.code = code;
         this.name = name;
         this.producer = producer;

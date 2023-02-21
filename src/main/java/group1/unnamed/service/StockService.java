@@ -6,6 +6,6 @@ import group1.unnamed.data.dto.StockListDTO;
 public interface StockService {
 
     StockListDTO getStockList(int companyId);
-    StockListDTO addStock(int companyId, StockDTO stockDTO);
+    StockListDTO addStocks(int companyId, StockListDTO stockListDTO);
 
 }

@@ -25,8 +25,8 @@ public class StockController {
     }
 
     @PostMapping(value = "")
-    public StockListDTO addStock(@RequestBody StockDTO stockDTO) {
-        stockService.addStock(1, stockDTO);
+    public StockListDTO addStocks(@RequestBody StockListDTO stockListDTO) {
+        stockService.addStocks(1, stockListDTO);
 
         return stockService.getStockList(1);
     }

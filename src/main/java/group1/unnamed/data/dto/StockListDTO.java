@@ -12,5 +12,5 @@ import java.util.List;
 @Builder
 public class StockListDTO {
 
-    private List<StockEntity> stocks;
+    private List<StockDTO> stocks;
 }

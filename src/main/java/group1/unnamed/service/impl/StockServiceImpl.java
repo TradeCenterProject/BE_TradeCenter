@@ -10,6 +10,7 @@ import group1.unnamed.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,20 +29,32 @@ public class StockServiceImpl implements StockService {
     public StockListDTO getStockList(int companyId) {
         List<StockEntity> stockEntities = stockHandler.getStockEntitiesByCompanyId(companyId);
 
-        return new StockListDTO(stockEntities);
+        List<StockDTO> stocks = new ArrayList<>();
+
+        for (int i=0; i<stockEntities.size(); i++) {
+            StockEntity stockEntity = stockEntities.get(i);
+
+            StockDTO stockDTO = new StockDTO(stockEntity.getCode(), stockEntity.getName(), stockEntity.getProducer(), stockEntity.getLocation(), stockEntity.getPrice(), stockEntity.getAmount());
+
+            stocks.add(stockDTO);
+        }
+
+        return new StockListDTO(stocks);
     }
 
     @Override
-    public StockListDTO addStock(int companyId, StockDTO stockDTO) {
+    public StockListDTO addStocks(int companyId, StockListDTO stockListDTO) {
         CompanyEntity companyEntity = companyHandler.getCompanyEntity(companyId);
-        System.out.println(companyEntity.getId());
-        System.out.println(companyEntity.getCode());
-        System.out.println(companyEntity.getName());
-        StockEntity stockEntity = new StockEntity(companyEntity, stockDTO.getCode(), stockDTO.getName(), stockDTO.getProducer(), stockDTO.getLocation(), stockDTO.getPrice(), stockDTO.getAmount());
-        stockHandler.addStockEntity(stockEntity);
 
-        List<StockEntity> stockEntities = stockHandler.getStockEntitiesByCompanyId(companyId);
+        List<StockDTO> stocks = stockListDTO.getStocks();
 
-        return new StockListDTO(stockEntities);
+        for (int i=0; i<stocks.size(); i++) {
+            StockDTO stock = stocks.get(i);
+
+            StockEntity stockEntity = new StockEntity(companyEntity, stock.getCode(), stock.getName(), stock.getProducer(), stock.getLocation(), stock.getPrice(), stock.getAmount());
+            stockHandler.addStockEntity(stockEntity);
+        }
+
+        return getStockList(companyId);
     }
 }
