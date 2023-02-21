@@ -24,7 +24,8 @@ public class StockDAOImpl implements StockDAO {
     }
 
     @Override
-    public StockEntity addStock(StockEntity stockEntity) {
-        return stockRepository.save(stockEntity);
+    public List<StockEntity> addStocks(List<StockEntity> stockEntities) {
+        return stockRepository.saveAll(stockEntities);
     }
+
 }

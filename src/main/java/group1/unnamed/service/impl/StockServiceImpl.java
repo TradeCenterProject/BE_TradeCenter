@@ -47,13 +47,17 @@ public class StockServiceImpl implements StockService {
         CompanyEntity companyEntity = companyHandler.getCompanyEntity(companyId);
 
         List<StockDTO> stocks = stockListDTO.getStocks();
+        List<StockEntity> stockEntities = new ArrayList<>();
 
         for (int i=0; i<stocks.size(); i++) {
             StockDTO stock = stocks.get(i);
 
             StockEntity stockEntity = new StockEntity(companyEntity, stock.getCode(), stock.getName(), stock.getProducer(), stock.getLocation(), stock.getPrice(), stock.getAmount());
-            stockHandler.addStockEntity(stockEntity);
+
+            stockEntities.add(stockEntity);
         }
+
+        stockHandler.addStockEntities(stockEntities);
 
         return getStockList(companyId);
     }

@@ -26,7 +26,7 @@ public class StockHandlerImpl implements StockHandler {
     }
 
     @Override
-    public StockEntity addStockEntity(StockEntity stockEntity) {
-        return stockDAO.addStock(stockEntity);
+    public List<StockEntity> addStockEntities(List<StockEntity> stockEntities) {
+        return stockDAO.addStocks(stockEntities);
     }
 }

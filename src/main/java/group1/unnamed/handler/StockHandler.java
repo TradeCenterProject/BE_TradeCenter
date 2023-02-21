@@ -7,5 +7,5 @@ import java.util.List;
 public interface StockHandler {
 
     List<StockEntity> getStockEntitiesByCompanyId(int companyId);
-    StockEntity addStockEntity(StockEntity stockEntity);
+    List<StockEntity> addStockEntities(List<StockEntity> stockEntities);
 }
