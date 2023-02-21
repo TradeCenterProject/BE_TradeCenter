@@ -17,8 +17,8 @@ public class stockTaskEntity {
     private int id;
     @ManyToOne
     @JoinColumn(name = "stock_id", referencedColumnName = "id")
-    private StockEntity stockId;
+    private StockEntity stockEntity;
     @ManyToOne
     @JoinColumn(name = "task_id", referencedColumnName = "id")
-    private TaskEntity taskId;
+    private TaskEntity taskEntity;
 }
