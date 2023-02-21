@@ -22,4 +22,9 @@ public class CompanyHandlerImpl implements CompanyHandler {
     public CompanyEntity getCompanyEntity(int companyId) {
         return companyDAO.getCompany(companyId);
     }
+
+    @Override
+    public CompanyEntity getCompanyEntityByUserId(int userId) {
+        return null;
+    }
 }

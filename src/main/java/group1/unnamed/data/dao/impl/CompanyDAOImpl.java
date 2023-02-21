@@ -26,4 +26,9 @@ public class CompanyDAOImpl implements CompanyDAO {
     public CompanyEntity getCompany(int companyId) {
         return companyRepository.getReferenceById(companyId);
     }
+
+    @Override
+    public CompanyEntity getCompanyByUserId(int userId) {
+        return null;
+    }
 }

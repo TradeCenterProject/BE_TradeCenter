@@ -8,4 +8,6 @@ import java.util.List;
 public interface CompanyDAO {
 
     CompanyEntity getCompany(int companyId);
+
+    CompanyEntity getCompanyByUserId(int userId);
 }
