@@ -1,7 +1,6 @@
 package group1.unnamed.service.impl;
 
 import group1.unnamed.data.dto.StockDTO;
-import group1.unnamed.data.dto.StockListDTO;
 import group1.unnamed.data.entity.CompanyEntity;
 import group1.unnamed.data.entity.StockEntity;
 import group1.unnamed.handler.CompanyHandler;
@@ -26,7 +25,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public StockListDTO getStockList(int companyId) {
+    public List<StockDTO> getStockList(int companyId) {
         List<StockEntity> stockEntities = stockHandler.getStockEntitiesByCompanyId(companyId);
 
         List<StockDTO> stocks = new ArrayList<>();
@@ -39,14 +38,13 @@ public class StockServiceImpl implements StockService {
             stocks.add(stockDTO);
         }
 
-        return new StockListDTO(stocks);
+        return stocks;
     }
 
     @Override
-    public StockListDTO addStocks(int companyId, StockListDTO stockListDTO) {
+    public List<StockDTO> addStocks(int companyId, List<StockDTO> stocks) {
         CompanyEntity companyEntity = companyHandler.getCompanyEntity(companyId);
 
-        List<StockDTO> stocks = stockListDTO.getStocks();
         List<StockEntity> stockEntities = new ArrayList<>();
 
         for (int i=0; i<stocks.size(); i++) {

@@ -8,6 +8,6 @@ import java.util.List;
 public interface TaskHandler {
 
     List<TaskEntity> getTaskEntitiesByUserId(int userId);
-
     TaskEntity addTaskEntity(TaskEntity taskEntity);
+    int countTaskEntitiesByDateAndType(String date, String type);
 }

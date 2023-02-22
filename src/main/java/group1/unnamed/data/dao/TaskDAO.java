@@ -8,6 +8,6 @@ import java.util.List;
 public interface TaskDAO {
 
     List<TaskEntity> getTasksByUserId(int userId);
-
     TaskEntity addTask(TaskEntity taskEntity);
+    int countTaskByDateAndType(String date, String type);
 }

@@ -5,11 +5,12 @@ import group1.unnamed.data.entity.*;
 import group1.unnamed.data.object.TaskStock;
 import group1.unnamed.data.object.UserInfo;
 import group1.unnamed.handler.*;
-import group1.unnamed.service.StockService;
 import group1.unnamed.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskListDTO getTaskList(int userId) {
+    public List<GetTaskDTO> getTaskList(int userId) {
 
         List<TaskEntity> taskEntities = taskHandler.getTaskEntitiesByUserId(userId);
 
-        List<TaskDTO> tasks = new ArrayList<>();
+        List<GetTaskDTO> tasks = new ArrayList<>();
 
         for (int i=0; i<taskEntities.size(); i++) {
             TaskEntity taskEntity = taskEntities.get(i);
@@ -43,25 +44,39 @@ public class TaskServiceImpl implements TaskService {
             UserInfo admin = new UserInfo(taskEntity.getAdminEntity().getId(), taskEntity.getAdminEntity().getName());
             UserInfo staff = new UserInfo(taskEntity.getStaffEntity().getId(), taskEntity.getStaffEntity().getName());
 
-            TaskDTO taskDTO = new TaskDTO(taskEntity.getId(), admin, staff, taskEntity.getCode(), taskEntity.getType(), taskEntity.getTitle(), taskEntity.getDate(), taskEntity.isDone());
+            GetTaskDTO task = new GetTaskDTO(taskEntity.getId(), admin, staff, taskEntity.getCode(), taskEntity.getType(), taskEntity.getTitle(), taskEntity.getDate(), taskEntity.isDone());
 
-            tasks.add(taskDTO);
+            tasks.add(task);
         }
-
-        return new TaskListDTO(tasks);
+        return tasks;
     }
 
     @Override
-    public AddTaskDTO addTask(int userId, AddTaskDTO addTaskDTO) {
-        TaskDTO taskDTO = addTaskDTO.getTask();
-        List<TaskStock> stocks = addTaskDTO.getStocks();
+    public AddTaskStocksDTO addTask(int userId, AddTaskStocksDTO addTaskStocksDTO) {
+        AddTaskDTO addTaskDTO = addTaskStocksDTO.getTask();
+        List<TaskStock> stocks = addTaskStocksDTO.getStocks();
 
         UserEntity userEntity = userHandler.getUserEntity(userId);
         CompanyEntity companyEntity = userEntity.getCompanyEntity();
 
-        UserEntity adminEntity = userHandler.getUserEntity(taskDTO.getAdmin().getId());
+        UserEntity staffEntity = userHandler.getUserEntity(addTaskDTO.getStaffId());
 
-        TaskEntity taskEntity = new TaskEntity(companyEntity, adminEntity, userEntity, taskDTO.getCode(), taskDTO.getType(), taskDTO.getTitle(), taskDTO.getDate(), taskDTO.isDone());
+        String dateCode = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd"));
+        String typeCode;
+        String type = addTaskDTO.getType();
+        if (type.equals("입고")) typeCode = "RCV";
+        else if (type.equals("출고")) typeCode = "FWD";
+        else typeCode = "ETC";
+
+        String numberCode;
+        int numberOfTask = taskHandler.countTaskEntitiesByDateAndType(LocalDate.now().toString(), type) + 1;
+        if (numberOfTask<10) numberCode = "00" + numberOfTask;
+        else if (numberOfTask<100) numberCode = "0" + numberOfTask;
+        else numberCode = Integer.toString(numberOfTask);
+
+        String code = dateCode + typeCode + numberCode;
+
+        TaskEntity taskEntity = new TaskEntity(companyEntity, userEntity, staffEntity, code, addTaskDTO.getType(), addTaskDTO.getTitle(), LocalDate.now().toString(), false);
 
         taskHandler.addTaskEntity(taskEntity);
 
@@ -78,6 +93,6 @@ public class TaskServiceImpl implements TaskService {
 
         taskStockHandler.addTaskStockEntities(taskStockEntities);
 
-        return addTaskDTO;
+        return addTaskStocksDTO;
     }
 }

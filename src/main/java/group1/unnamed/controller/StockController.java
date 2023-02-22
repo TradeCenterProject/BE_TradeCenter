@@ -1,10 +1,11 @@
 package group1.unnamed.controller;
 
 import group1.unnamed.data.dto.StockDTO;
-import group1.unnamed.data.dto.StockListDTO;
 import group1.unnamed.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/stocks")
@@ -19,14 +20,14 @@ public class StockController {
     }
 
     @GetMapping(value = "")
-    public StockListDTO getStockList() {
+    public List<StockDTO> getStockList() {
 
         return stockService.getStockList(1);
     }
 
     @PostMapping(value = "")
-    public StockListDTO addStocks(@RequestBody StockListDTO stockListDTO) {
-        stockService.addStocks(1, stockListDTO);
+    public List<StockDTO> addStocks(@RequestBody List<StockDTO> stocks) {
+        stockService.addStocks(1, stocks);
 
         return stockService.getStockList(1);
     }

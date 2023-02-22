@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users")
+@Table(name = "task_stocks")
 public class TaskStockEntity {
     @Id
     @GeneratedValue

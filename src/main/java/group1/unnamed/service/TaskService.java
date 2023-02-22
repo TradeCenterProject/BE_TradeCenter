@@ -2,10 +2,12 @@ package group1.unnamed.service;
 
 import group1.unnamed.data.dto.*;
 
+import java.util.List;
+
 public interface TaskService {
 
-    TaskListDTO getTaskList(int userId);
+    List<GetTaskDTO> getTaskList(int userId);
 
-    AddTaskDTO addTask(int userId, AddTaskDTO addTaskDTO);
+    AddTaskStocksDTO addTask(int userId, AddTaskStocksDTO addTaskStocksDTO);
 
 }

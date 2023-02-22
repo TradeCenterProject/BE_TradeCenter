@@ -32,4 +32,9 @@ public class TaskHandlerImpl implements TaskHandler {
     public TaskEntity addTaskEntity(TaskEntity taskEntity) {
         return taskDAO.addTask(taskEntity);
     }
+
+    @Override
+    public int countTaskEntitiesByDateAndType(String date, String type) {
+        return taskDAO.countTaskByDateAndType(date, type);
+    }
 }

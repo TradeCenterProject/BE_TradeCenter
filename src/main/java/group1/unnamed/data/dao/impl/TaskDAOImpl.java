@@ -31,4 +31,9 @@ public class TaskDAOImpl implements TaskDAO {
     public TaskEntity addTask(TaskEntity taskEntity) {
         return taskRepository.save(taskEntity);
     }
+
+    @Override
+    public int countTaskByDateAndType(String date, String type) {
+        return taskRepository.countAllByDateAndType(date, type);
+    }
 }

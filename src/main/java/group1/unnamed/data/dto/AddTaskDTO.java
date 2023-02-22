@@ -1,10 +1,7 @@
 package group1.unnamed.data.dto;
 
-import group1.unnamed.data.object.TaskStock;
 import group1.unnamed.data.object.UserInfo;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +10,8 @@ import java.util.List;
 @Builder
 public class AddTaskDTO {
 
-    private TaskDTO task;
-    private List<TaskStock> stocks;
+    private int staffId;
+    private String type;
+    private String title;
 
 }

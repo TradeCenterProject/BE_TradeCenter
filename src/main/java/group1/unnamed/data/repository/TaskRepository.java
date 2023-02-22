@@ -9,5 +9,5 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<TaskEntity, Integer> {
 
     List<TaskEntity> findAllByAdminEntity_IdOrStaffEntity_Id(int adminId, int staffId);
-
+    int countAllByDateAndType(String date, String type);
 }
