@@ -21,6 +21,11 @@ public class StockHandlerImpl implements StockHandler {
     }
 
     @Override
+    public StockEntity getStockEntity(int stockId) {
+        return stockDAO.getStock(stockId);
+    }
+
+    @Override
     public List<StockEntity> getStockEntitiesByCompanyId(int companyId) {
         return stockDAO.getStocksByCompanyId(companyId);
     }

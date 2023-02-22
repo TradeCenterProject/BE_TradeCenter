@@ -19,6 +19,11 @@ public class StockDAOImpl implements StockDAO {
     }
 
     @Override
+    public StockEntity getStock(int stockId) {
+        return stockRepository.getReferenceById(stockId);
+    }
+
+    @Override
     public List<StockEntity> getStocksByCompanyId(int companyId) {
         return stockRepository.findAllByCompanyEntity_Id(companyId);
     }
