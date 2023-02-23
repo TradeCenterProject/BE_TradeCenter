@@ -27,4 +27,14 @@ public class UserHandlerImpl implements UserHandler {
     public UserEntity getUserEntity(int userId) {
         return userDAO.getUser(userId);
     }
+
+    @Override
+    public UserEntity addUserEntity(UserEntity userEntity) {
+        return userDAO.addUser(userEntity);
+    }
+
+    @Override
+    public Boolean isUserEntityByEmail(String email) {
+        return userDAO.isUserByEmail(email);
+    }
 }

@@ -9,5 +9,7 @@ public interface CompanyDAO {
 
     CompanyEntity getCompany(int companyId);
 
-    CompanyEntity getCompanyByUserId(int userId);
+    CompanyEntity getCompanyByCode(String code);
+
+    Boolean isCompanyByCode(String code);
 }

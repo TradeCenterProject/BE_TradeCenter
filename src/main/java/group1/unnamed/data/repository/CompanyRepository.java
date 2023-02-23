@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CompanyRepository extends JpaRepository<CompanyEntity, Integer> {
 
+    CompanyEntity findByCode(String code);
+    Boolean existsByCode(String code);
 }

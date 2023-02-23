@@ -9,5 +9,7 @@ public interface CompanyHandler {
 
     CompanyEntity getCompanyEntity(int companyId);
 
-    CompanyEntity getCompanyEntityByUserId(int userId);
+    CompanyEntity getCompanyEntityByCode(String code);
+
+    Boolean isCompanyEntityByCode(String code);
 }

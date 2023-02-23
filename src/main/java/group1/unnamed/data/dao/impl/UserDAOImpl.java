@@ -25,4 +25,14 @@ public class UserDAOImpl implements UserDAO {
     public UserEntity getUser(int userId) {
         return userRepository.getReferenceById(userId);
     }
+
+    @Override
+    public UserEntity addUser(UserEntity userEntity) {
+        return userRepository.save(userEntity);
+    }
+
+    @Override
+    public Boolean isUserByEmail(String email) {
+        return userRepository.existsByByEmail(email);
+    }
 }

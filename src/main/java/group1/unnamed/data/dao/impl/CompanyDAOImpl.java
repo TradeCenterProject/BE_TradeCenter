@@ -28,7 +28,12 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public CompanyEntity getCompanyByUserId(int userId) {
-        return null;
+    public CompanyEntity getCompanyByCode(String code) {
+        return companyRepository.findByCode(code);
+    }
+
+    @Override
+    public Boolean isCompanyByCode(String code) {
+        return companyRepository.existsByCode(code);
     }
 }

@@ -24,7 +24,12 @@ public class CompanyHandlerImpl implements CompanyHandler {
     }
 
     @Override
-    public CompanyEntity getCompanyEntityByUserId(int userId) {
-        return null;
+    public CompanyEntity getCompanyEntityByCode(String code) {
+        return companyDAO.getCompanyByCode(code);
+    }
+
+    @Override
+    public Boolean isCompanyEntityByCode(String code) {
+        return companyDAO.isCompanyByCode(code);
     }
 }

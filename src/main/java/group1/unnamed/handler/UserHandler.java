@@ -8,5 +8,6 @@ import java.util.List;
 public interface UserHandler {
 
     UserEntity getUserEntity(int userId);
-
+    UserEntity addUserEntity(UserEntity userEntity);
+    Boolean isUserEntityByEmail(String email);
 }
