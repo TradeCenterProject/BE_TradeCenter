@@ -29,7 +29,7 @@ public class UserController {
 //        return taskService.getTaskList(1);
 //    }
 
-    @PostMapping(value = "")
+    @PostMapping(value = "/signUp")
     public UserInfo signUp(@RequestBody SignUpDTO signUpDTO) {
 
 
