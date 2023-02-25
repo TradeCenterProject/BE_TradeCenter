@@ -33,6 +33,11 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
+    public CompanyEntity addCompany(CompanyEntity companyEntity) {
+        return companyRepository.save(companyEntity);
+    }
+
+    @Override
     public Boolean isCompanyByCode(String code) {
         return companyRepository.existsByCode(code);
     }

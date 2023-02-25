@@ -11,5 +11,7 @@ public interface CompanyDAO {
 
     CompanyEntity getCompanyByCode(String code);
 
+    CompanyEntity addCompany(CompanyEntity companyEntity);
+
     Boolean isCompanyByCode(String code);
 }

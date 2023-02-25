@@ -21,7 +21,10 @@ public class UserEntity {
     private String email;
     private String password;
     private String salt;
+    private String phoneNumber;
+    private String accountNumber;
     private Boolean isAdmin;
+    private String joinedDate;
 
     public UserEntity(CompanyEntity companyEntity, String name, String email, String password, String salt, Boolean isAdmin) {
         this.companyEntity = companyEntity;

@@ -19,5 +19,13 @@ public class CompanyEntity {
     private int id;
     private String name;
     private String code;
+    private String phoneNumber;
+    private String registeredDate;
 
+    public CompanyEntity(String name, String code, String phoneNumber, String registeredDate) {
+        this.name = name;
+        this.code = code;
+        this.phoneNumber = phoneNumber;
+        this.registeredDate = registeredDate;
+    }
 }

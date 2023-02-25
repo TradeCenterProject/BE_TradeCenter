@@ -8,10 +8,10 @@ import java.security.SecureRandom;
 
 @Component
 public class Encryption {
-    public String getSalt() {
+    public String getSalt(int n) {
         //1. Random, salt 생성
         SecureRandom sr = new SecureRandom();
-        byte[] salt = new byte[20];
+        byte[] salt = new byte[n];
 
         //2. 난수 생성
         sr.nextBytes(salt);

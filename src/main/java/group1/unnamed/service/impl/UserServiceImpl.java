@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             return userInfo;
         }
 
-        String salt = encryption.getSalt();
+        String salt = encryption.getSalt(20);
         String encryptedPassword = encryption.getEncrypt(salt, password);
 
         UserEntity userEntity;
