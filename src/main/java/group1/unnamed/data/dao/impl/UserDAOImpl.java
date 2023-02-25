@@ -33,6 +33,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public Boolean isUserByEmail(String email) {
-        return userRepository.existsByByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 }
