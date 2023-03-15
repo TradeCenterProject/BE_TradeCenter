@@ -29,6 +29,11 @@ public class UserHandlerImpl implements UserHandler {
     }
 
     @Override
+    public UserEntity getUserEntityByEmail(String email) {
+        return userDAO.getUserByEmail(email);
+    }
+
+    @Override
     public UserEntity addUserEntity(UserEntity userEntity) {
         return userDAO.addUser(userEntity);
     }

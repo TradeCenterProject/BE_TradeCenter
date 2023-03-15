@@ -27,6 +27,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public UserEntity getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public UserEntity addUser(UserEntity userEntity) {
         return userRepository.save(userEntity);
     }
