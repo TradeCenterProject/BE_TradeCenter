@@ -80,7 +80,7 @@ public class UserController {
         if (companyName == null) {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID COMPANY NAME");
         }
-        if (companyCode == "" || companyName == "") {
+        if (companyCode == "" && companyName == "") {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID COMPANY INFORMATION");
         }
         if (!companyCode.equals("") && !companyHandler.existsCompanyEntityByCode(companyCode)) {
