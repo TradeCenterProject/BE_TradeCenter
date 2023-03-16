@@ -1,11 +1,6 @@
 package group1.unnamed.controller;
 
-import group1.unnamed.data.dto.CompanyDTO;
-import group1.unnamed.data.dto.SignUpDTO;
-import group1.unnamed.data.entity.CompanyEntity;
-import group1.unnamed.data.object.UserInfo;
 import group1.unnamed.service.CompanyService;
-import group1.unnamed.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

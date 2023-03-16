@@ -1,16 +1,12 @@
 package group1.unnamed.controller;
 
-import group1.unnamed.data.dto.AddTaskStocksDTO;
-import group1.unnamed.data.dto.GetTaskDTO;
 import group1.unnamed.data.dto.LoginDTO;
 import group1.unnamed.data.dto.SignUpDTO;
 import group1.unnamed.data.entity.UserEntity;
-import group1.unnamed.data.object.UserInfo;
 import group1.unnamed.exception.CustomException;
 import group1.unnamed.exception.ExceptionConstants;
 import group1.unnamed.handler.CompanyHandler;
 import group1.unnamed.handler.UserHandler;
-import group1.unnamed.service.TaskService;
 import group1.unnamed.service.UserService;
 import group1.unnamed.utils.Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
