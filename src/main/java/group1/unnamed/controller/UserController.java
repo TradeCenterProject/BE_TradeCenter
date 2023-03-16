@@ -56,14 +56,31 @@ public class UserController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity signup(@RequestBody SignUpDTO signUpDTO) throws CustomException {
+        String email = signUpDTO.getEmail();
+        String password = signUpDTO.getPassword();
+        String name = signUpDTO.getName();
         String companyCode = signUpDTO.getCompanyCode();
         String companyName = signUpDTO.getCompanyName();
 
-        Boolean isBoss;
-        if (companyCode.equals("")) isBoss = true;
-        else isBoss = false;
-
-        if (!isBoss && !companyHandler.existsCompanyEntityByCode(companyCode)) {
+        if (email == null || email.equals("")) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID EMAIL");
+        }
+        if (password == null || password.equals("")) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID PASSWORD");
+        }
+        if (name == null || name.equals("")) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID NAME");
+        }
+        if (companyCode == null) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID COMPANY CODE");
+        }
+        if (companyName == null) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID COMPANY NAME");
+        }
+        if (companyCode == "" || companyName == "") {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID COMPANY INFORMATION");
+        }
+        if (!companyCode.equals("") && !companyHandler.existsCompanyEntityByCode(companyCode)) {
             throw new CustomException(ExceptionConstants.ExceptionClass.COMPANY, HttpStatus.NOT_FOUND, "NOT EXIST COMPANY CODE");
         }
         if (companyHandler.existsCompanyEntityByCompanyName(companyName)) {
