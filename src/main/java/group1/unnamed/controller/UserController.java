@@ -4,6 +4,7 @@ import group1.unnamed.data.dto.AddTaskStocksDTO;
 import group1.unnamed.data.dto.GetTaskDTO;
 import group1.unnamed.data.dto.LoginDTO;
 import group1.unnamed.data.dto.SignUpDTO;
+import group1.unnamed.data.entity.UserEntity;
 import group1.unnamed.data.object.UserInfo;
 import group1.unnamed.exception.CustomException;
 import group1.unnamed.exception.ExceptionConstants;
@@ -11,6 +12,7 @@ import group1.unnamed.handler.CompanyHandler;
 import group1.unnamed.handler.UserHandler;
 import group1.unnamed.service.TaskService;
 import group1.unnamed.service.UserService;
+import group1.unnamed.utils.Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,19 +30,33 @@ import java.util.Map;
 @CrossOrigin(origins= "*", allowedHeaders = "*")
 public class UserController {
 
+    Encryption encryption;
     UserService userService;
     UserHandler userHandler;
     CompanyHandler companyHandler;
 
     @Autowired
-    public UserController(UserService userService, UserHandler userHandler, CompanyHandler companyHandler) {
+    public UserController(Encryption encryption, UserService userService, UserHandler userHandler, CompanyHandler companyHandler) {
+        this.encryption = encryption;
         this.companyHandler = companyHandler;
         this.userHandler = userHandler;
         this.userService = userService;
     }
 
     @PostMapping(value = "/login")
-    public UserInfo login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
+    public ResponseEntity login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) throws CustomException {
+
+        String email = loginDTO.getEmail();
+        String password = loginDTO.getPassword();
+
+        UserEntity userEntity = userHandler.getUserEntityByEmail(email);
+
+        if (!userHandler.isUserEntityByEmail(email)) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "NOT EXIST EMAIL");
+        }
+        if (!userEntity.getPassword().equals(encryption.getEncrypt(userEntity.getSalt(), password))) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.UNAUTHORIZED, "INVALID PASSWORD");
+        }
 
         return userService.loginUser(loginDTO, request);
     }
