@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/companies")
-@CrossOrigin(originPatterns= "*", allowedHeaders = "*", allowCredentials = "True")
+@CrossOrigin(origins= "*", allowedHeaders = "*")
 public class CompanyController {
 
     CompanyService companyService;
