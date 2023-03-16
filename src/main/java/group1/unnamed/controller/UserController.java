@@ -27,7 +27,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins= "*", allowedHeaders = "*")
+@CrossOrigin(originPatterns= "*", allowedHeaders = "*", allowCredentials = "True")
 public class UserController {
 
     Encryption encryption;

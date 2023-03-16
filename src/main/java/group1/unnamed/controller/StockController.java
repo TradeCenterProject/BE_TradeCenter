@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/stocks")
-@CrossOrigin(origins= "*", allowedHeaders = "*")
+@CrossOrigin(originPatterns= "*", allowedHeaders = "*", allowCredentials = "True")
 public class StockController {
 
     StockService stockService;
