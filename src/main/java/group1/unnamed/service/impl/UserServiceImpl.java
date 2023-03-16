@@ -36,16 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity signupValidation(SignUpDTO signUpDTO) {
-        String email = signUpDTO.getEmail();
-
-        if (userHandler.isUserEntityByEmail(email)) return new ResponseEntity(HttpStatus.BAD_REQUEST);
-
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @Override
-    public UserInfo signupUser(SignUpDTO signUpDTO) {
+    public ResponseEntity signupUser(SignUpDTO signUpDTO) {
         String email = signUpDTO.getEmail();
         String name = signUpDTO.getName();
         String password = signUpDTO.getPassword();
@@ -56,11 +47,6 @@ public class UserServiceImpl implements UserService {
         Boolean isBoss;
         if (companyCode.equals("")) isBoss = true;
         else isBoss = false;
-
-        if (!isBoss && !companyHandler.isCompanyEntityByCode(companyCode)) {
-            UserInfo userInfo = new UserInfo(-2, "not_exist_company");
-            return userInfo;
-        }
 
         String salt = encryption.getSalt(20);
         String encryptedPassword = encryption.getEncrypt(salt, password);
@@ -77,11 +63,9 @@ public class UserServiceImpl implements UserService {
             userEntity = new UserEntity(companyEntity, name, email, encryptedPassword, salt, isBoss);
         }
 
-        UserEntity savedUserEntity = userHandler.addUserEntity(userEntity);
+        userHandler.addUserEntity(userEntity);
 
-        UserInfo userInfo = new UserInfo(savedUserEntity.getId(), name);
-
-        return userInfo;
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @Override

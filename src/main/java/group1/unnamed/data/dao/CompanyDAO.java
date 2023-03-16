@@ -13,5 +13,6 @@ public interface CompanyDAO {
 
     CompanyEntity addCompany(CompanyEntity companyEntity);
 
-    Boolean isCompanyByCode(String code);
+    Boolean existsCompanyByCode(String code);
+    Boolean existsCompanyByCompanyName(String companyName);
 }

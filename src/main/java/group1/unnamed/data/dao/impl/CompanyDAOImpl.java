@@ -38,7 +38,12 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public Boolean isCompanyByCode(String code) {
+    public Boolean existsCompanyByCode(String code) {
         return companyRepository.existsByCode(code);
+    }
+
+    @Override
+    public Boolean existsCompanyByCompanyName(String companyName) {
+        return companyRepository.existsByName(companyName);
     }
 }

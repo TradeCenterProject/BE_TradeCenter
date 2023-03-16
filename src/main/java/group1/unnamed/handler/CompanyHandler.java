@@ -14,5 +14,7 @@ public interface CompanyHandler {
 
     CompanyEntity addCompanyEntity(CompanyEntity companyEntity);
 
-    Boolean isCompanyEntityByCode(String code);
+    Boolean existsCompanyEntityByCode(String code);
+    Boolean existsCompanyEntityByCompanyName(String companyName);
+
 }

@@ -34,7 +34,12 @@ public class CompanyHandlerImpl implements CompanyHandler {
     }
 
     @Override
-    public Boolean isCompanyEntityByCode(String code) {
-        return companyDAO.isCompanyByCode(code);
+    public Boolean existsCompanyEntityByCode(String code) {
+        return companyDAO.existsCompanyByCode(code);
+    }
+
+    @Override
+    public Boolean existsCompanyEntityByCompanyName(String companyName) {
+        return companyDAO.existsCompanyByCompanyName(companyName);
     }
 }

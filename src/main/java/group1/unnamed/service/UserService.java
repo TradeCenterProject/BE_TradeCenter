@@ -12,9 +12,7 @@ import java.util.List;
 
 public interface UserService {
 
-    ResponseEntity signupValidation(SignUpDTO signUpDTO);
-
-    UserInfo signupUser(SignUpDTO signUpDTO);
+    ResponseEntity signupUser(SignUpDTO signUpDTO);
 
     UserInfo loginUser(LoginDTO loginDTO, HttpServletRequest request);
 
