@@ -65,6 +65,9 @@ public class UserController {
         if (email == null || email.equals("")) {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID EMAIL");
         }
+        if (userHandler.isUserEntityByEmail(email)) {
+            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "ALREADY EXIST EMAIL");
+        }
         if (password == null || password.equals("")) {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "INVALID PASSWORD");
         }
