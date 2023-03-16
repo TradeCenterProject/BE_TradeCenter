@@ -23,22 +23,22 @@ public class TaskEntity {
     private CompanyEntity companyEntity;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "admin_id", referencedColumnName = "id")
-    private UserEntity adminEntity;
+    @JoinColumn(name = "boss_id", referencedColumnName = "id")
+    private UserEntity bossEntity;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "staff_id", referencedColumnName = "id")
-    private UserEntity staffEntity;
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private UserEntity employeeEntity;
     private String code;
     private String type;
     private String title;
     private String date;
     private boolean isDone;
 
-    public TaskEntity(CompanyEntity companyEntity, UserEntity adminEntity, UserEntity staffEntity, String code, String type, String title, String date, boolean isDone) {
+    public TaskEntity(CompanyEntity companyEntity, UserEntity bossEntity, UserEntity employeeEntity, String code, String type, String title, String date, boolean isDone) {
         this.companyEntity = companyEntity;
-        this.adminEntity = adminEntity;
-        this.staffEntity = staffEntity;
+        this.bossEntity = bossEntity;
+        this.employeeEntity = employeeEntity;
         this.code = code;
         this.type = type;
         this.title = title;

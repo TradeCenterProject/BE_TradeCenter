@@ -41,8 +41,8 @@ public class TaskServiceImpl implements TaskService {
         for (int i=0; i<taskEntities.size(); i++) {
             TaskEntity taskEntity = taskEntities.get(i);
 
-            UserInfo admin = new UserInfo(taskEntity.getAdminEntity().getId(), taskEntity.getAdminEntity().getName());
-            UserInfo staff = new UserInfo(taskEntity.getStaffEntity().getId(), taskEntity.getStaffEntity().getName());
+            UserInfo admin = new UserInfo(taskEntity.getBossEntity().getId(), taskEntity.getBossEntity().getName());
+            UserInfo staff = new UserInfo(taskEntity.getEmployeeEntity().getId(), taskEntity.getEmployeeEntity().getName());
 
             GetTaskDTO task = new GetTaskDTO(taskEntity.getId(), admin, staff, taskEntity.getCode(), taskEntity.getType(), taskEntity.getTitle(), taskEntity.getDate(), taskEntity.isDone());
 

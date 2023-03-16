@@ -22,10 +22,9 @@ public class CompanyEntity {
     private String phoneNumber;
     private String registeredDate;
 
-    public CompanyEntity(String name, String code, String phoneNumber, String registeredDate) {
+    public CompanyEntity(String name, String code, String registeredDate) {
         this.name = name;
         this.code = code;
-        this.phoneNumber = phoneNumber;
         this.registeredDate = registeredDate;
     }
 }

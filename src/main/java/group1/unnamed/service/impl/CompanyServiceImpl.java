@@ -30,12 +30,4 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
-    @Override
-    public CompanyEntity addCompany(CompanyDTO companyDTO) {
-        String code = encryption.getSalt(3);
-
-        CompanyEntity companyEntity = new CompanyEntity(companyDTO.getName(), code, companyDTO.getPhoneNumber(), LocalDate.now().toString());
-
-        return companyHandler.addCompanyEntity(companyEntity);
-    }
 }

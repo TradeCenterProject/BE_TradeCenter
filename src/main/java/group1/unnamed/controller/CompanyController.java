@@ -21,9 +21,4 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @PostMapping(value = "")
-    public CompanyEntity signUp(@RequestBody CompanyDTO companyDTO) {
-
-        return companyService.addCompany(companyDTO);
-    }
 }

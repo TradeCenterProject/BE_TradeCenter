@@ -8,7 +8,10 @@ import group1.unnamed.handler.*;
 import group1.unnamed.service.TaskService;
 import group1.unnamed.service.UserService;
 import group1.unnamed.utils.Encryption;
+import org.aspectj.runtime.internal.Conversions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,23 +36,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfo addUser(SignUpDTO signUpDTO) {
+    public ResponseEntity signupValidation(SignUpDTO signUpDTO) {
+        String email = signUpDTO.getEmail();
+
+        if (userHandler.isUserEntityByEmail(email)) return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @Override
+    public UserInfo signupUser(SignUpDTO signUpDTO) {
         String email = signUpDTO.getEmail();
         String name = signUpDTO.getName();
         String password = signUpDTO.getPassword();
 
-        if (userHandler.isUserEntityByEmail(email)) {
-            UserInfo userInfo = new UserInfo(-1, "exist_user");
-            return userInfo;
-        }
-
         String companyCode = signUpDTO.getCompanyCode();
+        String companyName = signUpDTO.getCompanyName();
 
-        Boolean isAdmin;
-        if (companyCode.equals("")) isAdmin = true;
-        else isAdmin = false;
+        Boolean isBoss;
+        if (companyCode.equals("")) isBoss = true;
+        else isBoss = false;
 
-        if (!isAdmin && !companyHandler.isCompanyEntityByCode(companyCode)) {
+        if (!isBoss && !companyHandler.isCompanyEntityByCode(companyCode)) {
             UserInfo userInfo = new UserInfo(-2, "not_exist_company");
             return userInfo;
         }
@@ -59,11 +67,15 @@ public class UserServiceImpl implements UserService {
 
         UserEntity userEntity;
 
-        if (!isAdmin) {
-            CompanyEntity companyEntity = companyHandler.getCompanyEntityByCode(companyCode);
-            userEntity = new UserEntity(companyEntity, name, email, encryptedPassword, salt, isAdmin);
+        if (isBoss) {
+            String code = encryption.getSalt(3);
+            CompanyEntity companyEntity = companyHandler.addCompanyEntity(new CompanyEntity(companyName, code, LocalDate.now().toString()));
+            userEntity = new UserEntity(companyEntity, name, email, encryptedPassword, salt, isBoss);
         }
-        else userEntity = new UserEntity(name, email, encryptedPassword, salt, isAdmin);
+        else {
+            CompanyEntity companyEntity = companyHandler.getCompanyEntityByCode(companyCode);
+            userEntity = new UserEntity(companyEntity, name, email, encryptedPassword, salt, isBoss);
+        }
 
         UserEntity savedUserEntity = userHandler.addUserEntity(userEntity);
 
@@ -99,5 +111,14 @@ public class UserServiceImpl implements UserService {
         UserInfo userInfo = new UserInfo(userEntity.getId(), userEntity.getName());
 
         return userInfo;
+    }
+
+    @Override
+    public Object logoutUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return null;
     }
 }

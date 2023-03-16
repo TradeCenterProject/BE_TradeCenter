@@ -1,13 +1,9 @@
 package group1.unnamed.data.dao.impl;
 
-import group1.unnamed.data.dao.StockDAO;
 import group1.unnamed.data.dao.TaskDAO;
-import group1.unnamed.data.entity.StockEntity;
 import group1.unnamed.data.entity.TaskEntity;
-import group1.unnamed.data.repository.StockRepository;
 import group1.unnamed.data.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +20,7 @@ public class TaskDAOImpl implements TaskDAO {
 
     @Override
     public List<TaskEntity> getTasksByUserId(int userId) {
-        return taskRepository.findAllByAdminEntity_IdOrStaffEntity_Id(userId, userId);
+        return taskRepository.findAllByBossEntity_IdOrEmployeeEntity_Id(userId, userId);
     }
 
     @Override

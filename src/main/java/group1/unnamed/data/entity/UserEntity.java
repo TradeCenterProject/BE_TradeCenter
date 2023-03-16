@@ -23,23 +23,23 @@ public class UserEntity {
     private String salt;
     private String phoneNumber;
     private String accountNumber;
-    private Boolean isAdmin;
+    private Boolean isBoss;
     private String joinedDate;
 
-    public UserEntity(CompanyEntity companyEntity, String name, String email, String password, String salt, Boolean isAdmin) {
+    public UserEntity(CompanyEntity companyEntity, String name, String email, String password, String salt, Boolean isBoss) {
         this.companyEntity = companyEntity;
         this.name = name;
         this.email = email;
         this.password = password;
         this.salt = salt;
-        this.isAdmin = isAdmin;
+        this.isBoss = isBoss;
     }
 
-    public UserEntity(String name, String email, String password, String salt, Boolean isAdmin) {
+    public UserEntity(String name, String email, String password, String salt, Boolean isBoss) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.salt = salt;
-        this.isAdmin = isAdmin;
+        this.isBoss = isBoss;
     }
 }

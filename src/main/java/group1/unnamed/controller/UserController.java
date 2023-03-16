@@ -8,9 +8,12 @@ import group1.unnamed.data.object.UserInfo;
 import group1.unnamed.service.TaskService;
 import group1.unnamed.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -25,21 +28,29 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping(value = "")
-//    public Object signIn() {
-//
-//        return taskService.getTaskList(1);
-//    }
     @PostMapping(value = "/login")
     public UserInfo login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
 
-
         return userService.loginUser(loginDTO, request);
     }
+    @PostMapping(value = "/validation")
+    public ResponseEntity signupValidation(@RequestBody SignUpDTO signUpDTO) {
+
+        return userService.signupValidation(signUpDTO);
+    }
+
     @PostMapping(value = "/signUp")
-    public UserInfo signUp(@RequestBody SignUpDTO signUpDTO) {
+    public UserInfo signup(@RequestBody SignUpDTO signUpDTO) {
 
+        return userService.signupUser(signUpDTO);
+    }
 
-        return userService.addUser(signUpDTO);
+    @PostMapping("/logout")
+    public ResponseEntity logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

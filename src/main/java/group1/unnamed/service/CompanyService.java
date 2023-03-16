@@ -7,6 +7,5 @@ import group1.unnamed.data.object.UserInfo;
 
 public interface CompanyService {
 
-    CompanyEntity addCompany(CompanyDTO companyDTO);
 
 }
