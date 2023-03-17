@@ -7,5 +7,6 @@ import group1.unnamed.data.object.UserInfo;
 
 public interface CompanyService {
 
+    CompanyDTO getCompanyInformation(int userId);
 
 }

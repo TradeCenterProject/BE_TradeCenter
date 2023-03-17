@@ -10,6 +10,7 @@ import group1.unnamed.handler.UserHandler;
 import group1.unnamed.service.CompanyService;
 import group1.unnamed.service.UserService;
 import group1.unnamed.utils.Encryption;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +31,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
+    @Override
+    public CompanyDTO getCompanyInformation(int userId) {
+        UserEntity userEntity = userHandler.getUserEntity(userId);
+        CompanyEntity companyEntity = companyHandler.getCompanyEntity(userEntity.getCompanyEntity().getId());
+
+        CompanyDTO companyDTO = new CompanyDTO(companyEntity.getCode(), companyEntity.getName(), companyEntity.getPhoneNumber(), companyEntity.getRegisteredDate());
+
+        return companyDTO;
+    }
 }
