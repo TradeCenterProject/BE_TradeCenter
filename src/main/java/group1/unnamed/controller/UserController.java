@@ -23,7 +23,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins= "*", allowedHeaders = "*")
+@CrossOrigin(origins= "http://localhost:3000", allowedHeaders = "*")
 public class UserController {
 
     Encryption encryption;

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
-@CrossOrigin(origins= "*", allowedHeaders = "*")
+@CrossOrigin(origins= "http://localhost:3000", allowedHeaders = "*")
 public class TaskController {
 
     TaskService taskService;

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/stocks")
-@CrossOrigin(origins= "*", allowedHeaders = "*")
+@CrossOrigin(origins= "http://localhost:3000", allowedHeaders = "*")
 public class StockController {
 
     StockService stockService;
