@@ -39,8 +39,26 @@ public class UserController {
         this.userService = userService;
     }
 
+//    @PostMapping(value = "/login")
+//    public ResponseEntity login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) throws CustomException {
+//
+//        String email = loginDTO.getEmail();
+//        String password = loginDTO.getPassword();
+//
+//        UserEntity userEntity = userHandler.getUserEntityByEmail(email);
+//
+//        if (!userHandler.isUserEntityByEmail(email)) {
+//            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.BAD_REQUEST, "NOT EXIST EMAIL");
+//        }
+//        if (!userEntity.getPassword().equals(encryption.getEncrypt(userEntity.getSalt(), password))) {
+//            throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.UNAUTHORIZED, "INVALID PASSWORD");
+//        }
+//
+//        return userService.loginUser(loginDTO, request);
+//    }
+
     @PostMapping(value = "/login")
-    public ResponseEntity login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) throws CustomException {
+    public String login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) throws CustomException {
 
         String email = loginDTO.getEmail();
         String password = loginDTO.getPassword();
@@ -54,8 +72,9 @@ public class UserController {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.UNAUTHORIZED, "INVALID PASSWORD");
         }
 
-        return userService.loginUser(loginDTO, request, response);
+        return userService.loginUser(loginDTO, request);
     }
+
     @PostMapping(value = "/validation")
     public ResponseEntity signupValidation(@RequestBody SignUpDTO signUpDTO) throws CustomException {
         String email = signUpDTO.getEmail();

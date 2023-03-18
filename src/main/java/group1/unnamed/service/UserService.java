@@ -15,7 +15,8 @@ public interface UserService {
 
     ResponseEntity signupUser(SignUpDTO signUpDTO);
 
-    ResponseEntity loginUser(LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response);
+//    ResponseEntity loginUser(LoginDTO loginDTO, HttpServletRequest request);
+    String loginUser(LoginDTO loginDTO, HttpServletRequest request);
 
     Object logoutUser(HttpServletRequest request);
 
