@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
@@ -62,14 +64,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity loginUser(LoginDTO loginDTO, HttpServletRequest request) {
+    public ResponseEntity loginUser(LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) {
         String email = loginDTO.getEmail();
-
+//
         UserEntity userEntity = userHandler.getUserEntityByEmail(email);
-
-        HttpSession session = request.getSession();
-
-        session.setAttribute("signIn", userEntity);
+//
+//        HttpSession session = request.getSession();
+//
+//        session.setAttribute("signIn", userEntity);
+        Cookie idCookie = new Cookie("memberId", String.valueOf(userEntity.getId()));
+        response.addCookie(idCookie);
+        response.setHeader("Access-Control-Allow-Credentials", "true");
 
         return new ResponseEntity(HttpStatus.OK);
     }

@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) throws CustomException {
+    public ResponseEntity login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) throws CustomException {
 
         String email = loginDTO.getEmail();
         String password = loginDTO.getPassword();
@@ -53,7 +54,7 @@ public class UserController {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.UNAUTHORIZED, "INVALID PASSWORD");
         }
 
-        return userService.loginUser(loginDTO, request);
+        return userService.loginUser(loginDTO, request, response);
     }
     @PostMapping(value = "/validation")
     public ResponseEntity signupValidation(@RequestBody SignUpDTO signUpDTO) throws CustomException {

@@ -8,13 +8,14 @@ import group1.unnamed.data.object.UserInfo;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UserService {
 
     ResponseEntity signupUser(SignUpDTO signUpDTO);
 
-    ResponseEntity loginUser(LoginDTO loginDTO, HttpServletRequest request);
+    ResponseEntity loginUser(LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response);
 
     Object logoutUser(HttpServletRequest request);
 
