@@ -73,8 +73,9 @@ public class UserServiceImpl implements UserService {
 //
 //        session.setAttribute("signIn", userEntity);
         Cookie idCookie = new Cookie("memberId", String.valueOf(userEntity.getId()));
-        response.addCookie(idCookie);
         idCookie.setPath("/");
+        response.addCookie(idCookie);
+
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
         return new ResponseEntity(HttpStatus.OK);
