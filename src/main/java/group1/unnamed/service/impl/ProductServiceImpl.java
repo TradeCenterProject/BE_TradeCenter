@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
         for (int i=0; i<productEntities.size(); i++) {
             ProductEntity productEntity = productEntities.get(i);
 
-            ProductDTO productDTO = new ProductDTO(productEntity.getId(), productEntity.getProductCode(), productEntity.getProductName(), productEntity.getProductCompany(), productEntity.getProductCategory(), productEntity.getLocation(), productEntity.getPrice(), productEntity.getQuantity());
+            ProductDTO productDTO = new ProductDTO(productEntity.getProductCode(), productEntity.getProductName(), productEntity.getProductCompany(), productEntity.getProductCategory(), productEntity.getLocation(), productEntity.getPrice(), productEntity.getQuantity());
 
             products.add(productDTO);
         }
