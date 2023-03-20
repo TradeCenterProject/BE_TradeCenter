@@ -20,20 +20,22 @@ public class StockEntity {
     @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private CompanyEntity companyEntity;
-    private String code;
-    private String name;
-    private String producer;
+    private String productCode;
+    private String productName;
+    private String productCompany;
+    private String productCategory;
     private String location;
     private int price;
-    private int amount;
+    private int quantity;
 
-    public StockEntity(CompanyEntity companyEntity, String code, String name, String producer, String location, int price, int amount) {
+    public StockEntity(CompanyEntity companyEntity, String productCode, String productName, String productCompany, String productCategory, String location, int price, int quantity) {
         this.companyEntity = companyEntity;
-        this.code = code;
-        this.name = name;
-        this.producer = producer;
+        this.productCode = productCode;
+        this.productName = productName;
+        this.productCompany = productCompany;
+        this.productCategory = productCategory;
         this.location = location;
         this.price = price;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 }

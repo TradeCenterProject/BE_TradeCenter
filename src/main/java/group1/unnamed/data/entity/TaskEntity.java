@@ -29,17 +29,17 @@ public class TaskEntity {
     @JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private UserEntity employeeEntity;
-    private String code;
+    private String taskCode;
     private String type;
     private String title;
     private String date;
     private boolean isDone;
 
-    public TaskEntity(CompanyEntity companyEntity, UserEntity bossEntity, UserEntity employeeEntity, String code, String type, String title, String date, boolean isDone) {
+    public TaskEntity(CompanyEntity companyEntity, UserEntity bossEntity, UserEntity employeeEntity, String taskCode, String type, String title, String date, boolean isDone) {
         this.companyEntity = companyEntity;
         this.bossEntity = bossEntity;
         this.employeeEntity = employeeEntity;
-        this.code = code;
+        this.taskCode = taskCode;
         this.type = type;
         this.title = title;
         this.date = date;

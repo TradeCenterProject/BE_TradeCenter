@@ -17,7 +17,7 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private CompanyEntity companyEntity;
-    private String name;
+    private String userName;
     private String email;
     private String password;
     private String salt;
@@ -26,17 +26,17 @@ public class UserEntity {
     private Boolean isBoss;
     private String joinedDate;
 
-    public UserEntity(CompanyEntity companyEntity, String name, String email, String password, String salt, Boolean isBoss) {
+    public UserEntity(CompanyEntity companyEntity, String userName, String email, String password, String salt, Boolean isBoss) {
         this.companyEntity = companyEntity;
-        this.name = name;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.salt = salt;
         this.isBoss = isBoss;
     }
 
-    public UserEntity(String name, String email, String password, String salt, Boolean isBoss) {
-        this.name = name;
+    public UserEntity(String userName, String email, String password, String salt, Boolean isBoss) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.salt = salt;
