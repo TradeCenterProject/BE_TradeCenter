@@ -1,12 +1,9 @@
 package group1.unnamed.controller;
 
 import group1.unnamed.data.dto.CompanyDTO;
-import group1.unnamed.data.dto.StockDTO;
 import group1.unnamed.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/companies")

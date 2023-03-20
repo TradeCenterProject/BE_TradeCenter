@@ -26,8 +26,8 @@ public class TaskController {
     }
 
     @PostMapping(value = "")
-    public List<GetTaskDTO> addTask(@RequestBody AddTaskStocksDTO addTaskStocksDTO) {
-        taskService.addTask(1, addTaskStocksDTO);
+    public List<GetTaskDTO> addTask(@RequestBody AddTaskProductsDTO addTaskProductsDTO) {
+        taskService.addTask(1, addTaskProductsDTO);
 
         return taskService.getTaskList(1);
     }

@@ -1,6 +1,5 @@
 package group1.unnamed.handler;
 
-import group1.unnamed.data.entity.StockEntity;
 import group1.unnamed.data.entity.TaskEntity;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package group1.unnamed.data.dto;
 
-import group1.unnamed.data.object.TaskStock;
+import group1.unnamed.data.object.TaskProduct;
 import lombok.*;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Builder
-public class AddTaskStocksDTO {
+public class AddTaskProductsDTO {
 
     private AddTaskDTO task;
-    private List<TaskStock> stocks;
+    private List<TaskProduct> products;
 
 }

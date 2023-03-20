@@ -8,6 +8,6 @@ public interface TaskService {
 
     List<GetTaskDTO> getTaskList(int userId);
 
-    AddTaskStocksDTO addTask(int userId, AddTaskStocksDTO addTaskStocksDTO);
+    AddTaskProductsDTO addTask(int userId, AddTaskProductsDTO addTaskProductsDTO);
 
 }

@@ -36,7 +36,7 @@ public class CompanyServiceImpl implements CompanyService {
         UserEntity userEntity = userHandler.getUserEntity(userId);
         CompanyEntity companyEntity = companyHandler.getCompanyEntity(userEntity.getCompanyEntity().getId());
 
-        CompanyDTO companyDTO = new CompanyDTO(companyEntity.getCode(), companyEntity.getName(), companyEntity.getPhoneNumber(), companyEntity.getRegisteredDate());
+        CompanyDTO companyDTO = new CompanyDTO(companyEntity.getCompanyCode(), companyEntity.getCompanyName(), companyEntity.getPhoneNumber(), companyEntity.getRegisteredDate());
 
         return companyDTO;
     }

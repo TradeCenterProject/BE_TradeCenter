@@ -7,8 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @Builder
-public class TaskStock {
+public class TaskProduct {
 
     private int id;
-    private int amount;
+    private int quantity;
 }

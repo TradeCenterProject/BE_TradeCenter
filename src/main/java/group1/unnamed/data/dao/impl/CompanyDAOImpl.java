@@ -1,15 +1,10 @@
 package group1.unnamed.data.dao.impl;
 
 import group1.unnamed.data.dao.CompanyDAO;
-import group1.unnamed.data.dao.StockDAO;
 import group1.unnamed.data.entity.CompanyEntity;
-import group1.unnamed.data.entity.StockEntity;
 import group1.unnamed.data.repository.CompanyRepository;
-import group1.unnamed.data.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CompanyDAOImpl implements CompanyDAO {
@@ -28,8 +23,8 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public CompanyEntity getCompanyByCode(String code) {
-        return companyRepository.findByCode(code);
+    public CompanyEntity getCompanyByCompanyCode(String code) {
+        return companyRepository.findByCompanyCode(code);
     }
 
     @Override
@@ -38,12 +33,12 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public Boolean existsCompanyByCode(String code) {
-        return companyRepository.existsByCode(code);
+    public Boolean existsCompanyByCompanyCode(String companyCode) {
+        return companyRepository.existsByCompanyCode(companyCode);
     }
 
     @Override
     public Boolean existsCompanyByCompanyName(String companyName) {
-        return companyRepository.existsByName(companyName);
+        return companyRepository.existsByCompanyName(companyName);
     }
 }

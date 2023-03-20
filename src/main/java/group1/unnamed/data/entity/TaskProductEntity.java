@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "task_stocks")
-public class TaskStockEntity {
+public class TaskProductEntity {
     @Id
     @GeneratedValue
     private int id;
@@ -20,12 +20,12 @@ public class TaskStockEntity {
     private TaskEntity taskEntity;
     @ManyToOne
     @JoinColumn(name = "stock_id", referencedColumnName = "id")
-    private StockEntity stockEntity;
+    private ProductEntity productEntity;
     private int amount;
 
-    public TaskStockEntity(TaskEntity taskEntity, StockEntity stockEntity, int amount) {
+    public TaskProductEntity(TaskEntity taskEntity, ProductEntity productEntity, int amount) {
         this.taskEntity = taskEntity;
-        this.stockEntity = stockEntity;
+        this.productEntity = productEntity;
         this.amount = amount;
     }
 }

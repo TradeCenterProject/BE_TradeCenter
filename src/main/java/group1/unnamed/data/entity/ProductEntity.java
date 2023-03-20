@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "stocks")
-public class StockEntity {
+public class ProductEntity {
     @Id
     @GeneratedValue
     private int id;
@@ -28,7 +28,7 @@ public class StockEntity {
     private int price;
     private int quantity;
 
-    public StockEntity(CompanyEntity companyEntity, String productCode, String productName, String productCompany, String productCategory, String location, int price, int quantity) {
+    public ProductEntity(CompanyEntity companyEntity, String productCode, String productName, String productCompany, String productCategory, String location, int price, int quantity) {
         this.companyEntity = companyEntity;
         this.productCode = productCode;
         this.productName = productName;

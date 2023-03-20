@@ -2,7 +2,7 @@ package group1.unnamed.service.impl;
 
 import group1.unnamed.data.dto.*;
 import group1.unnamed.data.entity.*;
-import group1.unnamed.data.object.TaskStock;
+import group1.unnamed.data.object.TaskProduct;
 import group1.unnamed.data.object.UserInfo;
 import group1.unnamed.handler.*;
 import group1.unnamed.service.TaskService;
@@ -18,16 +18,16 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     TaskHandler taskHandler;
-    StockHandler stockHandler;
-    TaskStockHandler taskStockHandler;
+    ProductHandler productHandler;
+    TaskProductHandler taskProductHandler;
     UserHandler userHandler;
 
 
     @Autowired
-    public TaskServiceImpl(TaskHandler taskHandler, StockHandler stockHandler, TaskStockHandler taskStockHandler, UserHandler userHandler) {
+    public TaskServiceImpl(TaskHandler taskHandler, ProductHandler productHandler, TaskProductHandler taskProductHandler, UserHandler userHandler) {
         this.taskHandler = taskHandler;
-        this.stockHandler = stockHandler;
-        this.taskStockHandler = taskStockHandler;
+        this.productHandler = productHandler;
+        this.taskProductHandler = taskProductHandler;
         this.userHandler = userHandler;
     }
 
@@ -41,10 +41,10 @@ public class TaskServiceImpl implements TaskService {
         for (int i=0; i<taskEntities.size(); i++) {
             TaskEntity taskEntity = taskEntities.get(i);
 
-            UserInfo admin = new UserInfo(taskEntity.getBossEntity().getId(), taskEntity.getBossEntity().getName());
-            UserInfo staff = new UserInfo(taskEntity.getEmployeeEntity().getId(), taskEntity.getEmployeeEntity().getName());
+            UserInfo admin = new UserInfo(taskEntity.getBossEntity().getId(), taskEntity.getBossEntity().getUserName());
+            UserInfo staff = new UserInfo(taskEntity.getEmployeeEntity().getId(), taskEntity.getEmployeeEntity().getUserName());
 
-            GetTaskDTO task = new GetTaskDTO(taskEntity.getId(), admin, staff, taskEntity.getCode(), taskEntity.getType(), taskEntity.getTitle(), taskEntity.getDate(), taskEntity.isDone());
+            GetTaskDTO task = new GetTaskDTO(taskEntity.getId(), admin, staff, taskEntity.getTaskCode(), taskEntity.getType(), taskEntity.getTitle(), taskEntity.getDate(), taskEntity.isDone());
 
             tasks.add(task);
         }
@@ -52,9 +52,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public AddTaskStocksDTO addTask(int userId, AddTaskStocksDTO addTaskStocksDTO) {
-        AddTaskDTO addTaskDTO = addTaskStocksDTO.getTask();
-        List<TaskStock> stocks = addTaskStocksDTO.getStocks();
+    public AddTaskProductsDTO addTask(int userId, AddTaskProductsDTO addTaskProductsDTO) {
+        AddTaskDTO addTaskDTO = addTaskProductsDTO.getTask();
+        List<TaskProduct> products = addTaskProductsDTO.getProducts();
 
         UserEntity userEntity = userHandler.getUserEntity(userId);
         CompanyEntity companyEntity = userEntity.getCompanyEntity();
@@ -80,19 +80,19 @@ public class TaskServiceImpl implements TaskService {
 
         taskHandler.addTaskEntity(taskEntity);
 
-        List<TaskStockEntity> taskStockEntities = new ArrayList<>();
+        List<TaskProductEntity> taskProductEntities = new ArrayList<>();
 
-        for (int i=0; i<stocks.size(); i++) {
-            TaskStock stock = stocks.get(i);
-            StockEntity stockEntity = stockHandler.getStockEntity(stock.getId());
+        for (int i=0; i<products.size(); i++) {
+            TaskProduct product = products.get(i);
+            ProductEntity productEntity = productHandler.getProductEntity(product.getId());
 
-            TaskStockEntity taskStockEntity = new TaskStockEntity(taskEntity, stockEntity, stocks.get(i).getAmount());
+            TaskProductEntity taskProductEntity = new TaskProductEntity(taskEntity, productEntity, products.get(i).getQuantity());
 
-            taskStockEntities.add(taskStockEntity);
+            taskProductEntities.add(taskProductEntity);
         }
 
-        taskStockHandler.addTaskStockEntities(taskStockEntities);
+        taskProductHandler.addTaskProductEntities(taskProductEntities);
 
-        return addTaskStocksDTO;
+        return addTaskProductsDTO;
     }
 }

@@ -1,6 +1,5 @@
 package group1.unnamed.data.repository;
 
-import group1.unnamed.data.entity.StockEntity;
 import group1.unnamed.data.entity.TaskEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
