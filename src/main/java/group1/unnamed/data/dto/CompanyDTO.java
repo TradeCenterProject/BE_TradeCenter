@@ -8,8 +8,8 @@ import lombok.*;
 @ToString
 @Builder
 public class CompanyDTO {
-    private String code;
-    private String name;
+    private String companyCode;
+    private String companyName;
     private String phoneNumber;
     private String registeredDate;
 

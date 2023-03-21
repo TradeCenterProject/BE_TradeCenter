@@ -10,8 +10,8 @@ import lombok.*;
 @Builder
 public class AddTaskDTO {
 
-    private int staffId;
-    private String type;
+    private int employeeId;
+    private String taskType;
     private String title;
 
 }
