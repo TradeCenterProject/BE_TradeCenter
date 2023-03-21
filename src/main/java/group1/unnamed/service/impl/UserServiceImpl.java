@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity signupUser(SignUpDTO signUpDTO) {
         String email = signUpDTO.getEmail();
-        String name = signUpDTO.getName();
+        String name = signUpDTO.getUserName();
         String password = signUpDTO.getPassword();
 
         String companyCode = signUpDTO.getCompanyCode();

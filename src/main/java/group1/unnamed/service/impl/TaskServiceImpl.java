@@ -59,11 +59,11 @@ public class TaskServiceImpl implements TaskService {
         UserEntity userEntity = userHandler.getUserEntity(userId);
         CompanyEntity companyEntity = userEntity.getCompanyEntity();
 
-        UserEntity staffEntity = userHandler.getUserEntity(addTaskDTO.getStaffId());
+        UserEntity staffEntity = userHandler.getUserEntity(addTaskDTO.getEmployeeId());
 
         String dateCode = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd"));
         String typeCode;
-        String type = addTaskDTO.getType();
+        String type = addTaskDTO.getTaskType();
         if (type.equals("입고")) typeCode = "RCV";
         else if (type.equals("출고")) typeCode = "FWD";
         else typeCode = "ETC";
@@ -76,7 +76,7 @@ public class TaskServiceImpl implements TaskService {
 
         String code = dateCode + typeCode + numberCode;
 
-        TaskEntity taskEntity = new TaskEntity(companyEntity, userEntity, staffEntity, code, addTaskDTO.getType(), addTaskDTO.getTitle(), LocalDate.now().toString(), false);
+        TaskEntity taskEntity = new TaskEntity(companyEntity, userEntity, staffEntity, code, addTaskDTO.getTaskType(), addTaskDTO.getTitle(), LocalDate.now().toString(), false);
 
         taskHandler.addTaskEntity(taskEntity);
 

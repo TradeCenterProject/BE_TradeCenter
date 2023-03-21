@@ -89,7 +89,7 @@ public class UserController {
     public ResponseEntity signup(@RequestBody SignUpDTO signUpDTO) throws CustomException {
         String email = signUpDTO.getEmail();
         String password = signUpDTO.getPassword();
-        String name = signUpDTO.getName();
+        String name = signUpDTO.getUserName();
         String companyCode = signUpDTO.getCompanyCode();
         String companyName = signUpDTO.getCompanyName();
 
