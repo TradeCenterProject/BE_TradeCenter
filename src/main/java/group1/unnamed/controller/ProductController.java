@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "")
-    public List<ProductDTO> addProducts(@RequestHeader(value = "authorization") String authorization, @RequestBody List<ProductDTO> products, HttpServletRequest request) throws CustomException {
+    public List<ProductDTO> addProducts(@RequestBody List<ProductDTO> products, HttpServletRequest request) throws CustomException {
         HttpSession session = request.getSession();
         if (session == null) {
             throw new CustomException(ExceptionConstants.ExceptionClass.USER, HttpStatus.UNAUTHORIZED, "INVALID SESSION");
