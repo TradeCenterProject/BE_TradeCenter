@@ -21,11 +21,11 @@ public class TaskProductEntity {
     @ManyToOne
     @JoinColumn(name = "stock_id", referencedColumnName = "id")
     private ProductEntity productEntity;
-    private int amount;
+    private int quantity;
 
-    public TaskProductEntity(TaskEntity taskEntity, ProductEntity productEntity, int amount) {
+    public TaskProductEntity(TaskEntity taskEntity, ProductEntity productEntity, int quantity) {
         this.taskEntity = taskEntity;
         this.productEntity = productEntity;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 }
