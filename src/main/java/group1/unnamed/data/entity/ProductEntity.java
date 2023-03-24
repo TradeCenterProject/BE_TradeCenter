@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "stocks")
+@Table(name = "products")
 public class ProductEntity {
     @Id
     @GeneratedValue
